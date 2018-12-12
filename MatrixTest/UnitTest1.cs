@@ -14,9 +14,9 @@ namespace MatrixTest
             Matrix.Services.Models.Matrix A = Matrix.Services.Services.MatrixManager.CreateRandomMatrixInt(10, 10);
             bool result = true;
 
-            for (uint i = 0; i < A.Rows; i++)
+            for (int i = 0; i < A.Rows; i++)
             {
-                for (uint j = 0; j < A.Columns; j++)
+                for (int j = 0; j < A.Columns; j++)
                 {
                     if (int.Parse(A.Content[i, j].ToString()) < -100 && int.Parse(A.Content[i, j].ToString()) > 100)
                     {
@@ -38,11 +38,11 @@ namespace MatrixTest
 
             bool result = true;
 
-            for (uint i = 0; i < matResult.Rows; i++)
+            for (int i = 0; i < matResult.Rows; i++)
             {
-                for (uint j = 0; j < matResult.Columns; j++)
+                for (int j = 0; j < matResult.Columns; j++)
                 {
-                    if (Convert.ToInt16(matResult.Content[i, j]) != Convert.ToInt16(A.Content[i, j]) + Convert.ToInt16(B.Content[i, j]))
+                    if (Convert.ToInt16(matResult[i, j]) != Convert.ToInt16(A[i, j]) + Convert.ToInt16(B[i, j]))
                     {
                         result = false;
                     }
@@ -65,7 +65,7 @@ namespace MatrixTest
             {
                 for (int j = 0; j < A.Columns; j++)
                 {
-                    if (!A.Content[i, j].Equals(B.Content[j, i]))
+                    if (!A[i, j].Equals(B[j, i]))
                     {
                         result = false;
                         break;
@@ -100,7 +100,7 @@ namespace MatrixTest
 
             Matrix.Services.Models.Matrix B = new Matrix.Services.Models.Matrix(2, 3);
 
-            A.Content = new object[,] { { 3, 2, 1 }, { 6, 5, 4 } };
+            B.Content = new object[,] { { 3, 2, 1 }, { 6, 5, 4 } };
 
             Matrix.Services.Models.Matrix matResult = A - B;
 
@@ -120,13 +120,25 @@ namespace MatrixTest
             Matrix.Services.Models.Matrix B = new Matrix.Services.Models.Matrix(2, 3);
             B.Content = new object[,] { { 1, 3, 2 }, { 2, -3, 1 } };
 
-            Matrix.Services.Models.Matrix matExpected = new Matrix.Services.Models.Matrix(2, 3);
-            matExpected.Content = new object[,] { { 7, -6, 1 }, { 3, -9, -4 } };
-
             Matrix.Services.Models.Matrix matResult = A * B;
 
+            Matrix.Services.Models.Matrix matExpected = new Matrix.Services.Models.Matrix(2, 3);
+            matExpected.Content = new object[,] { { 7, -6, 5 }, { 3, -9, 0 } };
+
             Assert.AreEqual(true, matExpected.Equals(matResult));
-            
+
+        }
+
+        [TestMethod]
+        public void DeterminantMatrixTest()
+        {
+            Matrix.Services.Models.Matrix A = new Matrix.Services.Models.Matrix(4, 4);
+
+            A.Content = new object[,] { { 5, 3, 1, 0 }, { -1, 2, 5, -2 }, { 3, -1, -2, 0 }, { -5, 0, -3, 1 } };
+
+            double result = Matrix.Services.Services.MatrixManager.DeterminantMatrix(A);
+
+            Assert.AreEqual(-95, result);
         }
     }
 }

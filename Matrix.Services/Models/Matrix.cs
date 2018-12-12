@@ -15,6 +15,11 @@ namespace Matrix.Services.Models
         }
 
         #region Properties
+        public double this[int i, int j]
+        {
+            get { return Convert.ToDouble(Content[i, j]); }
+            set { Content[i, j] = value; }
+        }
         public int Rows
         {
             get
@@ -31,24 +36,24 @@ namespace Matrix.Services.Models
         }
 
         public object[,] Content { get; set; }
+
+        public bool IsSquared { get { return this.Rows == this.Columns; } }
         #endregion
 
         public static implicit operator short(Models.Matrix mat)
         {
-            return Convert.ToInt16(mat.Content[0, 0]);
+            return Convert.ToInt16(mat[0, 0]);
         }
 
         public static Matrix operator +(Matrix mat1, Matrix mat2)
         {
             Matrix matResult = new Matrix(mat1.Rows, mat1.Columns);
 
-            matResult.Content = new object[matResult.Rows, matResult.Columns];
-
-            for (uint i = 0; i < matResult.Rows; i++)
+            for (int i = 0; i < matResult.Rows; i++)
             {
-                for (uint j = 0; j < matResult.Columns; j++)
+                for (int j = 0; j < matResult.Columns; j++)
                 {
-                    matResult.Content[i, j] = Convert.ToInt16(mat1.Content[i, j]) + Convert.ToInt16(mat2.Content[i, j]);
+                    matResult[i, j] = Convert.ToInt16(mat1[i, j]) + Convert.ToInt16(mat2[i, j]);
                 }
             }
 
@@ -59,11 +64,11 @@ namespace Matrix.Services.Models
         {
             Matrix matResult = new Matrix(mat.Rows, mat.Columns);
 
-            for (uint i = 0; i < mat.Rows; i++)
+            for (int i = 0; i < mat.Rows; i++)
             {
-                for (uint j = 0; j < mat.Columns; j++)
+                for (int j = 0; j < mat.Columns; j++)
                 {
-                    matResult.Content[i, j] = Convert.ToDouble(mat.Content[i, j]) * k;
+                    matResult[i, j] = Convert.ToDouble(mat[i, j]) * k;
                 }
             }
 
@@ -82,9 +87,9 @@ namespace Matrix.Services.Models
                     var acum = 0.0;
                     for (int k = 0; k < matResult.Rows; k++)
                     {
-                        acum += Convert.ToDouble(mat1.Content[i, k], CultureInfo.InvariantCulture) * Convert.ToDouble(mat2.Content[k, j], CultureInfo.InvariantCulture);
+                        acum += Convert.ToDouble(mat1[i, k], CultureInfo.InvariantCulture) * Convert.ToDouble(mat2[k, j], CultureInfo.InvariantCulture);
                     }
-                    matResult.Content[i, j] = acum;
+                    matResult[i, j] = acum;
                 }
             }
 
@@ -102,9 +107,9 @@ namespace Matrix.Services.Models
 
             for (int i = 0; i < this.Rows; i++)
             {
-                for (uint j = 0; j < this.Columns; j++)
+                for (int j = 0; j < this.Columns; j++)
                 {
-                    if (this.Content[i, j].Equals(B.Content[i, j]))
+                    if (!this[i, j].Equals(B[i, j]))
                     {
                         return false;
                     }
@@ -119,6 +124,5 @@ namespace Matrix.Services.Models
             Matrix matResult = mat1 + (-1 * mat2);
             return matResult;
         }
-
     }
 }

@@ -1,0 +1,10 @@
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\MatrixTest.dll
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\MatrixTest.pdb
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\Matrix.Services.dll
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\Matrix.Services.pdb
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\obj\Debug\MatrixTest.csprojResolveAssemblyReference.cache
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\obj\Debug\MatrixTest.dll
+C:\Users\afgracia\documents\visual studio 2015\Projects\Matrix\MatrixTest\obj\Debug\MatrixTest.pdb
